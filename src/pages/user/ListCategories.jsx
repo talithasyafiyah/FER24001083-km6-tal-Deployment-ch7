@@ -45,7 +45,7 @@ function ListCategories() {
           <Navbar transparent={true} />
 
           {/* Hero Section */}
-          <div className="relative h-[160px] md:h-[280px] overflow-x-hidden">
+          <div className="relative h-[160px] md:h-[280px] overflow-x-hidden overflow-y-hidden">
             <div className="w-full h-[280px] absolute top-0">
               <Slider />
             </div>

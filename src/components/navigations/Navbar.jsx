@@ -47,12 +47,17 @@ function Navbar({ transparent }) {
       <img
         src={data.picture.data ? data.picture.data.url : data.picture}
         alt="Profile picture"
-        width={26}
-        className="rounded-full"
+        className="rounded-full w-[40px] md:w-[26px]"
       />
     );
   } else {
-    profileImage = <img src="person.svg" alt="Person Icon" width={26} />;
+    profileImage = (
+      <img
+        src="person.svg"
+        alt="Person Icon"
+        className="w-[40px] md:w-[26px]"
+      />
+    );
   }
 
   const handleConfirmModalToggle = () => {
@@ -71,95 +76,102 @@ function Navbar({ transparent }) {
         }`}
       >
         <div className="container flex justify-between items-center">
+          {/* Logo */}
           <Link to="/">
             <img src="/logo.png" width={90} alt="Logo" />
           </Link>
-          <div className="md:hidden">
-            {/* Hamburger Menu */}
-            <button
-              onClick={handleMobileMenuToggle}
-              className="text-primary focus:outline-none focus:text-gprimary"
-              aria-label="Open Menu"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d={
-                    isMobileMenuOpen
-                      ? "M6 18L18 6M6 6l12 12"
-                      : "M4 6h16M4 12h16m-7 6h7"
-                  }
-                />
-              </svg>
-            </button>
-          </div>
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-2">
+
+          <div>
             {isLoggedIn ? (
-              <div className="flex items-center gap-8">
-                <div>
-                  <Link
-                    to="/search-recipe"
-                    className={`${
-                      isScrolled || !transparent
-                        ? "text-sm font-medium text-primary"
-                        : "text-sm font-medium text-white "
-                    }`}
+              <div className="md:hidden">
+                {/* Hamburger Menu */}
+                <button
+                  onClick={handleMobileMenuToggle}
+                  className="text-primary focus:outline-none focus:text-gprimary"
+                  aria-label="Open Menu"
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
-                    Search recipe
-                  </Link>
-                </div>
-                <div className="relative">
-                  <div
-                    className="flex items-center cursor-pointer"
-                    onClick={() => setShowDropdown(!showDropdown)}
-                  >
-                    <div className="flex justify-between gap-2 items-center">
-                      {profileImage}
-                      <p
-                        className={`${
-                          isScrolled || !transparent
-                            ? "text-sm font-medium text-primary"
-                            : "text-sm font-medium text-white"
-                        }`}
-                      >
-                        {data.name}
-                      </p>
-                    </div>
-                  </div>
-                  {showDropdown && (
-                    <div className="absolute top-full left-0 mt-1 bg-white shadow-md rounded-md w-40">
-                      <button
-                        className="block w-full text-left px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md"
-                        onClick={handleConfirmModalToggle}
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  )}
-                </div>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d={
+                        isMobileMenuOpen
+                          ? "M6 18L18 6M6 6l12 12"
+                          : "M4 6h16M4 12h16m-7 6h7"
+                      }
+                    />
+                  </svg>
+                </button>
               </div>
             ) : (
-              <div>
-                <Link
-                  to="/login"
-                  className={`${
-                    isScrolled || !transparent
-                      ? "text-sm font-medium text-white bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary rounded-full px-4 py-2 items-center"
-                      : "text-sm font-medium text-primary bg-white hover:bg-white/90 rounded-full px-4 py-2 items-center"
-                  }`}
-                >
-                  Log in
-                </Link>
-              </div>
+              <Link
+                to="/login"
+                className={`${
+                  isScrolled || !transparent
+                    ? "text-sm font-medium text-white bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary rounded-full px-4 py-2 items-center"
+                    : "text-sm font-medium text-primary bg-white hover:bg-white/90 rounded-full px-4 py-2 items-center"
+                }`}
+              >
+                Log in
+              </Link>
             )}
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-2">
+              {isLoggedIn ? (
+                <div className="flex items-center gap-8">
+                  <div>
+                    <Link
+                      to="/search-recipe"
+                      className={`${
+                        isScrolled || !transparent
+                          ? "text-sm font-medium text-primary"
+                          : "text-sm font-medium text-white "
+                      }`}
+                    >
+                      Search recipe
+                    </Link>
+                  </div>
+                  <div className="relative">
+                    <div
+                      className="flex items-center cursor-pointer"
+                      onClick={() => setShowDropdown(!showDropdown)}
+                    >
+                      <div className="flex justify-between gap-2 items-center">
+                        {profileImage}
+                        <p
+                          className={`${
+                            isScrolled || !transparent
+                              ? "text-sm font-medium text-primary"
+                              : "text-sm font-medium text-white"
+                          }`}
+                        >
+                          {data && data.name}
+                        </p>
+                      </div>
+                    </div>
+                    {showDropdown && (
+                      <div className="absolute top-full left-0 mt-1 bg-white shadow-md rounded-md w-40">
+                        <button
+                          className="block w-full text-left px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 rounded-md"
+                          onClick={handleConfirmModalToggle}
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
         </div>
       </nav>
@@ -193,16 +205,24 @@ function Navbar({ transparent }) {
             </svg>
             <span className="sr-only">Close menu</span>
           </button>
+          <div className="px-4 py-2 text-sm font-medium text-main w-full text-right">
+            <div className="flex justify-between items-center">
+              {profileImage}
+              <p className="text-sm font-medium text-primary">
+                {data && data.name}
+              </p>
+            </div>
+          </div>
           <Link
             to="/search-recipe"
-            className="px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100 w-full text-right"
+            className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-right"
           >
             Search recipe
           </Link>
           {isLoggedIn && (
             <button
               onClick={handleConfirmModalToggle}
-              className="px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100 w-full text-right"
+              className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-right"
             >
               Logout
             </button>

@@ -44,11 +44,11 @@ function LandingPage() {
       <Navbar transparent={true} />
       {/* Hero Section */}
       <div>
-        <div className="w-full h-screen text-main">
+        <div className="w-full h-screen md:h-[640px] lg:h-screen text-main">
           <div className="absolute top-0 w-full h-screen flex items-center justify-center">
             <div className="absolute top-0 left-0 w-full h-screen flex items-center justify-center">
               <div className="container items-center">
-                <div className="text-left w-full md:w-full lg:w-1/2">
+                <div className="text-left w-full md:w-3/4 lg:w-1/2">
                   <p className=" text-5xl font-bold mb-4">
                     What would you like to cook today?
                   </p>

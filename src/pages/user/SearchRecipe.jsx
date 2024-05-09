@@ -61,7 +61,7 @@ function SearchRecipe() {
       ) : (
         <div>
           <Navbar transparent={true} />
-          <div className="relative h-[200px] md:h-[280px] overflow-x-hidden">
+          <div className="relative h-[200px] md:h-[280px] overflow-x-hidden overflow-y-hidden">
             <div className="absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-3/4 md:w-1/2">
               <h1 className="text-3xl md:text-4xl font-semibold text-white text-center mb-4 md:mb-6">
                 Search Recipes
