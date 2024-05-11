@@ -81,6 +81,7 @@ function ListCategories() {
                     <img
                       className="w-full object-cover h-48"
                       src={e?.strMealThumb}
+                      alt={e?.strMeal}
                     />
                     <div className="p-3">
                       <div className="flex flex-col justify-between">

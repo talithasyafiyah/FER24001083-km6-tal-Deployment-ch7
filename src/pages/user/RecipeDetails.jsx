@@ -63,7 +63,7 @@ function RecipeDetails() {
                         <div className="w-full h-60">
                           <img
                             src={data[0]?.strMealThumb}
-                            alt=""
+                            alt={data[0]?.strMeal}
                             className="w-full h-60 object-cover rounded-lg"
                           />
                         </div>

@@ -36,7 +36,7 @@ function Login() {
                 src={e?.image}
                 alt={`Slide ${index}`}
               />
-              <div className="absolute inset-0 bg-black opacity-40"></div>
+              <div className="absolute inset-0 bg-black opacity-60"></div>
             </div>
           ))}
         </Slider>

@@ -4,8 +4,8 @@ function Footer({ transparent }) {
       <div className="w-full p-4 py-8">
         <div className="flex items-center justify-between md:container md:mb-8">
           <div className="mb-6 md:mb-0">
-            <a href="#" className="flex items-center">
-              <img className="" src="logo.png" width={90} />
+            <a href="/" className="flex items-center">
+              <img src="logo.png" alt="nomnom-logo" width={90} />
             </a>
           </div>
         </div>
@@ -15,7 +15,7 @@ function Footer({ transparent }) {
             <ul className="flex flex-col md:flex-row text-left text-xs text-white md:space-x-3 md:p-0 md:text-sm lg:space-x-8 lg:p-0">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="block rounded px-1.5 py-2 hover:text-primary md:p-0 md:px-3 lg:p-0"
                 >
                   About
@@ -23,7 +23,7 @@ function Footer({ transparent }) {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="block rounded px-1.5 py-2 hover:text-primary md:p-0 md:px-3 lg:p-0"
                 >
                   Contact
@@ -31,7 +31,7 @@ function Footer({ transparent }) {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="block rounded px-1.5 py-2 hover:text-primary md:p-0 md:px-3 lg:p-0"
                 >
                   Privacy Policy
@@ -39,7 +39,7 @@ function Footer({ transparent }) {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="block rounded px-1.5 py-2 hover:text-primary md:p-0 md:px-3 lg:p-0"
                 >
                   Terms of Service
@@ -49,11 +49,11 @@ function Footer({ transparent }) {
           </div>
 
           <div className="mt-3 md:mt-0">
-            <a href="#" className="flex justify-start md:justify-center">
+            <div className="flex justify-start md:justify-center">
               <p className="self-center whitespace-nowrap text-xs font-normal md:text-sm dark:text-white">
                 &copy; 2024 Talitha Syafiyah
               </p>
-            </a>
+            </div>
           </div>
         </div>
       </div>

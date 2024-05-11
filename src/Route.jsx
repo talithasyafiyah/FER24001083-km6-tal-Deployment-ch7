@@ -6,6 +6,7 @@ import LandingPage from "./pages/LandingPage.jsx";
 import SearchRecipe from "./pages/user/SearchRecipe.jsx";
 import ListCategories from "./pages/user/ListCategories.jsx";
 import RecipeDetails from "./pages/user/RecipeDetails.jsx";
+import Profile from "./pages/user/Profile.jsx";
 import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store.js";
@@ -59,6 +60,16 @@ function App() {
                   <div>
                     <Protected />
                     <RecipeDetails />
+                    <NoAccessToken />
+                  </div>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <div>
+                    <Protected />
+                    <Profile />
                     <NoAccessToken />
                   </div>
                 }

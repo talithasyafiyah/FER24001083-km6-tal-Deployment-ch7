@@ -69,7 +69,7 @@ function Register() {
           <div className="p-6 space-y-4 md:space-y-8 sm:p-8">
             <div className="flex flex-col gap-4 -mb-2">
               <Link to="/">
-                <img src="/logo.png" className="w-24" alt="Logo" />
+                <img src="/logo.png" className="w-24" alt="nomnom-logo" />
               </Link>
               <div>
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-main md:text-2xl">

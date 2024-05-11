@@ -7,6 +7,7 @@ import Footer from "../components/navigations/Footer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import HeroSlider from "../components/slider/HeroSlider";
 import { toast } from "react-toastify";
 import { setCategoryName, setMealId } from "../redux/reducers/recipeReducers";
 import { noAccessToken } from "../redux/actions/authActions";
@@ -57,40 +58,74 @@ function LandingPage() {
   };
 
   return (
-    <div className="bg-none md:bg-[url('/bg.jpg')] md:bg-contain md:bg-no-repeat overflow-x-hidden">
+    <div
+      className={`${
+        isLoggedIn
+          ? "bg-white"
+          : "bg-[url('/bg-mobile.jpg')] md:bg-[url('/bg.jpg')]"
+      } bg-contain bg-no-repeat overflow-x-hidden`}
+    >
       <Navbar transparent={true} />
-      {/* Hero Section */}
-      <div>
-        <div className="w-full h-screen md:h-[640px] lg:h-screen text-main">
-          <div className="absolute top-0 w-full h-screen flex items-center justify-center">
-            <div className="absolute top-0 left-0 w-full h-screen flex items-center justify-center">
-              <div className="container items-center">
-                <div className="text-left w-full md:w-3/4 lg:w-1/2">
-                  <p className=" text-5xl font-bold mb-4">
-                    What would you like to cook today?
-                  </p>
-                  <p className=" text-base font-normal leading-6 mt-6">
-                    Discover the recipe you desire based on the provided
-                    categories or ingredients you have, and create your own
-                    version of the recipe to share it with others! You can do
-                    all of that on NomNom.
-                  </p>
 
-                  <a href={isLoggedIn ? "#recipe" : "/login"}>
-                    <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary rounded-full px-12 py-2 text-base text-white font-semibold mt-4">
-                      Discover Recipes
-                    </button>
-                  </a>
+      {/* Hero Section */}
+      {isLoggedIn ? (
+        <div className="relative h-screen overflow-x-hidden overflow-y-hidden">
+          <div className="absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-3/4 md:w-1/2">
+            <div className="text-center w-full text-white">
+              <p className="text-[32px] md:text-[38px] font-bold">
+                What would you like to cook today?
+              </p>
+              <p className="text-sm md:text-base font-normal leading-6 my-2">
+                Discover the recipe you desire based on the provided categories
+                or ingredients you have, and create your own version of the
+                recipe to share it with others! You can do all of that on
+                NomNom.
+              </p>
+
+              <a href={isLoggedIn ? "#recipe" : "/login"}>
+                <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary rounded-full px-12 py-2 text-base text-white font-semibold mt-4">
+                  Discover Recipes
+                </button>
+              </a>
+            </div>
+          </div>
+          <div className="w-full h-screen absolute top-0">
+            <HeroSlider />
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className="w-full h-screen md:h-[640px] lg:h-screen text-main">
+            <div className="absolute top-0 w-full h-screen flex items-center justify-center">
+              <div className="absolute top-0 left-0 w-full h-screen flex items-center justify-center">
+                <div className="container items-center">
+                  <div className="text-left w-full md:w-3/4 lg:w-1/2">
+                    <p className="text-3xl md:text-5xl font-bold mb-4">
+                      What would you like to cook today?
+                    </p>
+                    <p className=" text-base font-normal leading-6 mt-6">
+                      Discover the recipe you desire based on the provided
+                      categories or ingredients you have, and create your own
+                      version of the recipe to share it with others! You can do
+                      all of that on NomNom.
+                    </p>
+
+                    <a href={isLoggedIn ? "#recipe" : "/login"}>
+                      <button className="bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary rounded-full px-12 py-2 text-base text-white font-semibold mt-4">
+                        Discover Recipes
+                      </button>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Category Section */}
       {isLoggedIn ? (
-        <section id="recipe" className="mt-20">
+        <section id="recipe" className="mt-10">
           <h1 className="container text-3xl text-left font-bold text-main mb-6">
             Categories
           </h1>
@@ -173,6 +208,7 @@ function LandingPage() {
                 <img
                   className="w-full object-cover h-48"
                   src={e?.strMealThumb}
+                  alt={e?.strMeal}
                 />
                 <div className="p-3">
                   <div className="flex flex-col justify-between">

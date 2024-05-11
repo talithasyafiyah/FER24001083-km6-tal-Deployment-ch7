@@ -56,7 +56,9 @@ export const getCategoryList = () => async (dispatch, getState) => {
 
 export const getMealSlider = () => async (dispatch) => {
   try {
-    const response = await axios.get(`https://dummyjson.com/recipes?limit=10`);
+    const response = await axios.get(
+      `https://dummyjson.com/recipes/meal-type/lunch`
+    );
     dispatch(setMealSlider(response.data.recipes));
   } catch (error) {
     if (axios.isAxiosError(error)) {
