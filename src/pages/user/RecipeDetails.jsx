@@ -19,22 +19,25 @@ function RecipeDetails() {
       .catch(() => setIsLoading(true));
   }, [navigate, dispatch]);
 
-  const instructions = data[0]?.strInstructions
-    .split(". ")
-    .filter((instruction) => instruction);
+  const instructions =
+    data && data[0]?.strInstructions
+      ? data[0].strInstructions.split(". ").filter((instruction) => instruction)
+      : [];
 
   const ingredientElements = [];
-  for (let i = 1; i <= 20; i++) {
-    const measure = data[0][`strMeasure${i}`];
-    const ingredient = data[0][`strIngredient${i}`];
+  if (data) {
+    for (let i = 1; i <= 20; i++) {
+      const measure = data[0][`strMeasure${i}`];
+      const ingredient = data[0][`strIngredient${i}`];
 
-    if (measure && ingredient) {
-      ingredientElements.push(
-        <div key={i} className="flex items-center gap-3">
-          <p className="text-primary text-xl font-bold">{measure}</p>
-          <p className="text-main text-base font-medium">{ingredient}</p>
-        </div>
-      );
+      if (measure && ingredient) {
+        ingredientElements.push(
+          <div key={i} className="flex items-center gap-3">
+            <p className="text-primary text-xl font-bold">{measure}</p>
+            <p className="text-main text-base font-medium">{ingredient}</p>
+          </div>
+        );
+      }
     }
   }
 
