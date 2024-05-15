@@ -60,6 +60,16 @@ function Navbar({ transparent }) {
     );
   }
 
+  const smoothScrollTo = (targetId) => {
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   const handleConfirmModalToggle = () => {
     setConfirmModalOpen(!confirmModalOpen);
   };
@@ -110,7 +120,7 @@ function Navbar({ transparent }) {
             </div>
 
             {!isLoggedIn ? (
-              <div className="flex justify-between gap-80">
+              <div className="flex justify-between gap-[351px]">
                 <div className="hidden md:flex items-center">
                   <a
                     href="/"
@@ -126,6 +136,7 @@ function Navbar({ transparent }) {
                   </a>
                   <a
                     href="#about-us"
+                    onClick={() => smoothScrollTo('about-us')}
                     className={`${
                       isScrolled || !transparent
                         ? "text-sm font-medium text-primary mr-8"
@@ -136,6 +147,7 @@ function Navbar({ transparent }) {
                   </a>
                   <a
                     href="#features"
+                    onClick={() => smoothScrollTo('features')}
                     className={`${
                       isScrolled || !transparent
                         ? "text-sm font-medium text-primary mr-8"
