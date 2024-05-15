@@ -109,53 +109,57 @@ function Navbar({ transparent }) {
               </button>
             </div>
 
-            <div className="flex justify-between gap-80">
-              <div className="hidden md:flex items-center">
-                <a
-                  href="/"
-                  className={`${
-                    isScrolled ||
-                    !transparent ||
-                    window.location.pathname === "/"
-                      ? "text-sm font-medium text-primary mr-8"
-                      : "text-sm font-medium text-white mr-8"
-                  }`}
-                >
-                  Home
-                </a>
-                <a
-                  href="#about-us"
-                  className={`${
-                    isScrolled || !transparent
-                      ? "text-sm font-medium text-primary mr-8"
-                      : "text-sm font-medium text-white mr-8 "
-                  }`}
-                >
-                  About us
-                </a>
-                <a
-                  href="#features"
-                  className={`${
-                    isScrolled || !transparent
-                      ? "text-sm font-medium text-primary mr-8"
-                      : "text-sm font-medium text-white mr-8 "
-                  }`}
-                >
-                  Features
-                </a>
-              </div>
+            {!isLoggedIn ? (
+              <div className="flex justify-between gap-80">
+                <div className="hidden md:flex items-center">
+                  <a
+                    href="/"
+                    className={`${
+                      isScrolled ||
+                      !transparent ||
+                      window.location.pathname === "/"
+                        ? "text-sm font-medium text-primary mr-8"
+                        : "text-sm font-medium text-white mr-8"
+                    }`}
+                  >
+                    Home
+                  </a>
+                  <a
+                    href="#about-us"
+                    className={`${
+                      isScrolled || !transparent
+                        ? "text-sm font-medium text-primary mr-8"
+                        : "text-sm font-medium text-white mr-8 "
+                    }`}
+                  >
+                    About us
+                  </a>
+                  <a
+                    href="#features"
+                    className={`${
+                      isScrolled || !transparent
+                        ? "text-sm font-medium text-primary mr-8"
+                        : "text-sm font-medium text-white mr-8 "
+                    }`}
+                  >
+                    Features
+                  </a>
+                </div>
 
-              <Link
-                to="/login"
-                className={`${
-                  isScrolled || !transparent
-                    ? "hidden md:block text-sm font-medium text-white bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary rounded-full px-4 py-2 items-center"
-                    : "hidden md:block text-sm font-medium text-white bg-none hover:bg-white/90 hover:text-secondary rounded-full px-4 py-2 items-center"
-                }`}
-              >
-                Log in
-              </Link>
-            </div>
+                <Link
+                  to="/login"
+                  className={`${
+                    isScrolled || !transparent
+                      ? "hidden md:block text-sm font-medium text-white bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary rounded-full px-4 py-2 items-center"
+                      : "hidden md:block text-sm font-medium text-white bg-none hover:bg-white/90 hover:text-secondary rounded-full px-4 py-2 items-center"
+                  }`}
+                >
+                  Log in
+                </Link>
+              </div>
+            ) : (
+              ""
+            )}
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-2">
