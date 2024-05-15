@@ -47,7 +47,7 @@ const recipeSlice = createSlice({
     },
     addToFavorite: (state, action) => {
       const { meal, userEmail } = action.payload;
-      state.favorites[userEmail].push(meal);
+      state.favorites[userEmail]?.push(meal);
     },
     removeFromFavorite: (state, action) => {
       const { mealId, userEmail } = action.payload;
