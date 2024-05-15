@@ -571,6 +571,7 @@ function LandingPage() {
                 </p>
               </div>
             </div>
+
             {/* Mobile */}
             <div className="flex-col md:hidden container h-full gap-8 justify-center items-center p-8">
               {/* Title */}
@@ -580,7 +581,7 @@ function LandingPage() {
                   Subscribe to Get Latest Recipe
                 </p>
               </div>
-              <div className="bg-white w-full shadow-lg rounded-xl p-8">
+              <div className="bg-white w-full shadow-lg rounded-t-xl p-8">
                 <p className="text-main font-medium text-base">
                   Stay in the Loop and Never Miss Out on Our Newest,
                   Mouthwatering Recipes!
