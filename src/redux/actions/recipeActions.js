@@ -5,8 +5,10 @@ import {
   setMealDetail,
   setCategory,
   setCategoryList,
-  setSearchResults
+  setSearchResults,
+  setUserFavorites,
 } from "../reducers/recipeReducers";
+import { toast } from "react-toastify";
 
 export const getMeal = () => async (dispatch) => {
   try {
@@ -100,3 +102,9 @@ export const getSearchResults = () => async (dispatch, getState) => {
     toast.error(error.message);
   }
 };
+
+export const getUserFavorites = (userEmail) => async (dispatch, getState) => {
+  const userFavorites = getState().recipe.favorites[userEmail];
+  dispatch(setUserFavorites(userFavorites));
+};
+

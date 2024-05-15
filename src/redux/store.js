@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-// import authReducers from "./reducers/authReducers";
 import recipeReducers from "./reducers/recipeReducers";
 import { thunk } from "redux-thunk";
 import { persistStore, persistReducer } from "redux-persist";
@@ -14,7 +13,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ['recipe']
+  // blacklist: ['recipe'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

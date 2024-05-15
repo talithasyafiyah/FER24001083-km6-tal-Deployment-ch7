@@ -53,7 +53,7 @@ function Navbar({ transparent }) {
   } else {
     profileImage = (
       <img
-        src="person.svg"
+        src="/person.svg"
         alt="Person Icon"
         className="w-[40px] md:w-[26px]"
       />
@@ -71,7 +71,7 @@ function Navbar({ transparent }) {
   return (
     <div>
       <nav
-        className={`py-4 px-3 fixed top-0 w-full z-50 transition-colors duration-1000 ${
+        className={`py-4 px-3 fixed top-0 w-full z-50 transition-colors duration-500 ${
           isScrolled || !transparent ? "bg-white shadow" : "bg-transparent"
         }`}
       >
@@ -115,7 +115,7 @@ function Navbar({ transparent }) {
                 className={`${
                   isScrolled || !transparent
                     ? "text-sm font-medium text-white bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary rounded-full px-4 py-2 items-center"
-                    : "text-sm font-medium text-secondary bg-white hover:bg-white/90 rounded-full px-4 py-2 items-center"
+                    : "text-sm font-medium text-white bg-none hover:bg-white/90 hover:text-secondary rounded-full px-4 py-2 items-center"
                 }`}
               >
                 Log in
@@ -158,7 +158,10 @@ function Navbar({ transparent }) {
                     </div>
                     {showDropdown && (
                       <div className="absolute top-full left-0 mt-1 bg-white shadow-md rounded-md w-40">
-                        <Link to="/profile" className="block w-full text-left px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 rounded-t-md">
+                        <Link
+                          to="/profile"
+                          className="block w-full text-left px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 rounded-t-md"
+                        >
                           Profile
                         </Link>
                         <button
@@ -209,7 +212,7 @@ function Navbar({ transparent }) {
             <span className="sr-only">Close menu</span>
           </button>
           <div className="px-4 py-2 text-sm font-medium text-main w-full text-right">
-            <div className="flex justify-between items-center">
+            <div className="flex gap-4 items-center">
               {profileImage}
               <p className="text-sm font-medium text-primary">
                 {data && data.name}
@@ -218,14 +221,20 @@ function Navbar({ transparent }) {
           </div>
           <Link
             to="/search-recipe"
-            className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-right"
+            className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
           >
             Search recipe
+          </Link>
+          <Link
+            to="/profile"
+            className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
+          >
+            Profile
           </Link>
           {isLoggedIn && (
             <button
               onClick={handleConfirmModalToggle}
-              className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-right"
+              className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
             >
               Logout
             </button>

@@ -11,6 +11,7 @@ import {
 import { getMeal, getSearchResults } from "../../redux/actions/recipeActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "../../functions/debounce";
+import Card from "../../components/Card";
 
 function SearchRecipe() {
   const dispatch = useDispatch();
@@ -43,21 +44,9 @@ function SearchRecipe() {
   return (
     <div>
       {isLoading ? (
-        <ProgressBar
-          visible={true}
-          height="80"
-          width="80"
-          barColor="#ffb03e"
-          borderColor="#f67356"
-          ariaLabel="progress-bar-loading"
-          wrapperStyle={{
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-          wrapperClass=""
-        />
+        <div className="flex justify-center items-center h-screen">
+          <img src="/loading.gif" alt="loading..." />
+        </div>
       ) : (
         <div>
           <Navbar transparent={true} />
@@ -96,54 +85,21 @@ function SearchRecipe() {
             </div>
           </div>
 
-          <section id="card" className="container mt-6 md:mt-6 mb-16">
+          <section id="card" className="container mt-6 md:mt-8 mb-16">
             <div>
-              {Array.isArray(data) && data.length > 0 && (
+              {Array.isArray(data) && data.length > 0 && searchTerm && (
                 <h2 className="text-base text-left font-semibold text-main mb-4">
-                  Showing {data.length} results{" "}
-                  {searchTerm && (
-                    <>
-                      for <span className="text-secondary">"{searchTerm}"</span>
-                    </>
-                  )}
+                  Showing {data.length} results for{" "}
+                  <span className="text-secondary">"{searchTerm}"</span>
                 </h2>
               )}
+
               {Array.isArray(data) && data.length === 0 && searchTerm && (
                 <p className="text-base text-left font-semibold text-red-600 mb-4">
                   No recipes found for "{searchTerm}"
                 </p>
               )}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {Array.isArray(data) && data.length > 0 ? (
-                  data.map((e, i) => (
-                    <div
-                      key={i}
-                      className="w-full bg-white shadow rounded-lg cursor-pointer h-full bg-transparent overflow-hidden text-main transition-transform duration-300 hover:scale-[1.05] hover:shadow-lg"
-                      onClick={() => {
-                        navigate(`/recipe-details/${e?.idMeal}`);
-                        dispatch(setMealId(e?.idMeal));
-                      }}
-                    >
-                      <img
-                        className="w-full object-cover h-48"
-                        src={e?.strMealThumb}
-                        alt={e?.strMeal}
-                      />
-                      <div className="p-3">
-                        <div className="flex flex-col justify-between">
-                          <div className="min-h-10">
-                            <p className="text-base font-semibold leading-tight">
-                              {e?.strMeal}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <p></p>
-                )}
-              </div>
+              <Card isLoading={isLoading} data={data} />
             </div>
           </section>
           <Footer />

@@ -8,6 +8,7 @@ import { ProgressBar } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryList } from "../../redux/actions/recipeActions";
 import { setMealId } from "../../redux/reducers/recipeReducers";
+import Card from "../../components/Card";
 
 function ListCategories() {
   const dispatch = useDispatch();
@@ -25,21 +26,9 @@ function ListCategories() {
   return (
     <div>
       {isLoading ? (
-        <ProgressBar
-          visible={true}
-          height="80"
-          width="80"
-          barColor="#ffb03e"
-          borderColor="#f67356"
-          ariaLabel="progress-bar-loading"
-          wrapperStyle={{
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-          wrapperClass=""
-        />
+        <div className="flex justify-center items-center h-screen">
+          <img src="/loading.gif" alt="loading..." />
+        </div>
       ) : (
         <div>
           <Navbar transparent={true} />
@@ -57,47 +46,7 @@ function ListCategories() {
               Showing {data.length} results for{" "}
               <span className="text-secondary">"{categoryName}"</span>
             </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {isLoading ? (
-                <Audio
-                  height="80"
-                  width="80"
-                  radius="9"
-                  color="green"
-                  ariaLabel="loading"
-                  wrapperStyle
-                  wrapperClass
-                />
-              ) : Array.isArray(data) && data.length > 0 ? (
-                data.map((e, i) => (
-                  <div
-                    key={i}
-                    className="w-full bg-white shadow rounded-lg cursor-pointer h-full bg-transparent overflow-hidden text-main transition-transform duration-300 hover:scale-[1.05] hover:shadow-lg"
-                    onClick={() => {
-                      navigate(`/recipe-details/${e?.idMeal}`);
-                      dispatch(setMealId(e?.idMeal));
-                    }}
-                  >
-                    <img
-                      className="w-full object-cover h-48"
-                      src={e?.strMealThumb}
-                      alt={e?.strMeal}
-                    />
-                    <div className="p-3">
-                      <div className="flex flex-col justify-between">
-                        <div className="min-h-10">
-                          <p className="text-base font-semibold leading-tight">
-                            {e?.strMeal}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p>No recipes available</p>
-              )}
-            </div>
+            <Card isLoading={isLoading} data={data} />
           </section>
           <Footer />
         </div>

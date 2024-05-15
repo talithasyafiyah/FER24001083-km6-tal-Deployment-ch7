@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getMealSlider } from "../../redux/actions/recipeActions";
 
-function Login() {
+function HeroSlider() {
   const dispatch = useDispatch();
   const slider = useSelector((state) => state?.recipe.mealSlider);
 
@@ -73,4 +73,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default HeroSlider;

@@ -1,11 +1,11 @@
 function Footer({ transparent }) {
   return (
-    <footer className="main-font mt-[50px] bg-main">
+    <footer className="main-font bg-main">
       <div className="w-full p-4 py-8">
         <div className="flex items-center justify-between md:container md:mb-8">
           <div className="mb-6 md:mb-0">
             <a href="/" className="flex items-center">
-              <img src="logo.png" alt="nomnom-logo" width={90} />
+              <img src="/logo.png" alt="nomnom-logo" width={90} />
             </a>
           </div>
         </div>

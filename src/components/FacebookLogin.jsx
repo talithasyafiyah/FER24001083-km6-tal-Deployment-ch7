@@ -21,7 +21,7 @@ export default function FbLogin() {
         >
           <div className="w-full text-main text-sm bg-white border border-slate-300 rounded-full font-medium px-10 py-1.5 hover:bg-gray-100">
             <div className="flex gap-0.5 items-center">
-              <img src="fb.svg" alt="facebook" width={26} />
+              <img src="/fb.svg" alt="facebook" width={26} />
               <p>Sign in</p>
             </div>
           </div>

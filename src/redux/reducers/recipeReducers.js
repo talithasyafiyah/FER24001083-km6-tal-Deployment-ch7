@@ -10,6 +10,8 @@ const initialState = {
   categoryName: null,
   searchKeyword: "",
   searchResults: [],
+  favorites: {},
+  userFavorites: [],
 };
 
 const recipeSlice = createSlice({
@@ -43,6 +45,21 @@ const recipeSlice = createSlice({
     setSearchResults: (state, action) => {
       state.searchResults = action.payload;
     },
+    addToFavorite: (state, action) => {
+      const { meal, userEmail } = action.payload;
+      state.favorites[userEmail].push(meal);
+    },
+    removeFromFavorite: (state, action) => {
+      const { mealId, userEmail } = action.payload;
+      if (state.favorites[userEmail]) {
+        state.favorites[userEmail] = state.favorites[userEmail].filter(
+          (meal) => meal.idMeal !== mealId
+        );
+      }
+    },
+    setUserFavorites: (state, action) => {
+      state.userFavorites = action.payload;
+    },
   },
 });
 
@@ -56,6 +73,9 @@ export const {
   setCategoryName,
   setSearchKeyword,
   setSearchResults,
+  setUserFavorites,
+  addToFavorite,
+  removeFromFavorite,
 } = recipeSlice.actions;
 
 export default recipeSlice.reducer;

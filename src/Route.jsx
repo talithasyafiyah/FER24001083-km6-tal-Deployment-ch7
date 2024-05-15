@@ -76,7 +76,11 @@ function App() {
               />
             </Routes>
 
-            <ToastContainer />
+            <ToastContainer
+              position="bottom-right"
+              theme="colored"
+              autoClose={2500}
+            />
           </BrowserRouter>
         </GoogleOAuthProvider>
       </PersistGate>
