@@ -22,6 +22,7 @@ const persistConfig = {
   key: "root",
   storage,
   transforms: [favoritesTransform],
+  whitelist: ["recipe", "auth"]
 };
 
 // Create persisted reducer
