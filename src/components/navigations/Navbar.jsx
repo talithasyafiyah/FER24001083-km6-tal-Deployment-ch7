@@ -82,45 +82,80 @@ function Navbar({ transparent }) {
           </Link>
 
           <div>
-            {isLoggedIn ? (
-              <div className="md:hidden">
-                {/* Hamburger Menu */}
-                <button
-                  onClick={handleMobileMenuToggle}
-                  className="text-primary focus:outline-none focus:text-gprimary"
-                  aria-label="Open Menu"
+            <div className="md:hidden">
+              {/* Hamburger Menu */}
+              <button
+                onClick={handleMobileMenuToggle}
+                className="text-primary focus:outline-none focus:text-gprimary"
+                aria-label="Open Menu"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d={
-                        isMobileMenuOpen
-                          ? "M6 18L18 6M6 6l12 12"
-                          : "M4 6h16M4 12h16m-7 6h7"
-                      }
-                    />
-                  </svg>
-                </button>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d={
+                      isMobileMenuOpen
+                        ? "M6 18L18 6M6 6l12 12"
+                        : "M4 6h16M4 12h16m-7 6h7"
+                    }
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <div className="flex justify-between gap-80">
+              <div className="hidden md:flex items-center">
+                <a
+                  href="/"
+                  className={`${
+                    isScrolled ||
+                    !transparent ||
+                    window.location.pathname === "/"
+                      ? "text-sm font-medium text-primary mr-8"
+                      : "text-sm font-medium text-white mr-8"
+                  }`}
+                >
+                  Home
+                </a>
+                <a
+                  href="#about-us"
+                  className={`${
+                    isScrolled || !transparent
+                      ? "text-sm font-medium text-primary mr-8"
+                      : "text-sm font-medium text-white mr-8 "
+                  }`}
+                >
+                  About us
+                </a>
+                <a
+                  href="#features"
+                  className={`${
+                    isScrolled || !transparent
+                      ? "text-sm font-medium text-primary mr-8"
+                      : "text-sm font-medium text-white mr-8 "
+                  }`}
+                >
+                  Features
+                </a>
               </div>
-            ) : (
+
               <Link
                 to="/login"
                 className={`${
                   isScrolled || !transparent
-                    ? "text-sm font-medium text-white bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary rounded-full px-4 py-2 items-center"
-                    : "text-sm font-medium text-white bg-none hover:bg-white/90 hover:text-secondary rounded-full px-4 py-2 items-center"
+                    ? "hidden md:block text-sm font-medium text-white bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-primary rounded-full px-4 py-2 items-center"
+                    : "hidden md:block text-sm font-medium text-white bg-none hover:bg-white/90 hover:text-secondary rounded-full px-4 py-2 items-center"
                 }`}
               >
                 Log in
               </Link>
-            )}
+            </div>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-2">
@@ -130,9 +165,11 @@ function Navbar({ transparent }) {
                     <Link
                       to="/search-recipe"
                       className={`${
-                        isScrolled || !transparent
+                        isScrolled ||
+                        !transparent ||
+                        window.location.pathname === "/search-recipe"
                           ? "text-sm font-medium text-primary"
-                          : "text-sm font-medium text-white "
+                          : "text-sm font-medium text-white"
                       }`}
                     >
                       Search recipe
@@ -175,7 +212,7 @@ function Navbar({ transparent }) {
                   </div>
                 </div>
               ) : (
-                <></>
+                ""
               )}
             </div>
           </div>
@@ -183,64 +220,129 @@ function Navbar({ transparent }) {
       </nav>
 
       {/* Mobile Menu */}
-      <div
-        className={`${
-          isMobileMenuOpen ? "fixed z-50" : "hidden"
-        } top-0 left-0 w-full h-full flex items-center justify-end bg-black bg-opacity-30`}
-        onClick={handleMobileMenuToggle}
-      >
-        <div className="md:hidden bg-white w-1/2 h-full flex flex-col justify-start items-end pt-12">
-          <button
-            onClick={handleMobileMenuToggle}
-            className="absolute top-4 right-4 text-main hover:text-gray-600 focus:outline-none"
-          >
-            <svg
-              className="w-4 h-4"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 14"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-              />
-            </svg>
-            <span className="sr-only">Close menu</span>
-          </button>
-          <div className="px-4 py-2 text-sm font-medium text-main w-full text-right">
-            <div className="flex gap-4 items-center">
-              {profileImage}
-              <p className="text-sm font-medium text-primary">
-                {data && data.name}
-              </p>
-            </div>
-          </div>
-          <Link
-            to="/search-recipe"
-            className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
-          >
-            Search recipe
-          </Link>
-          <Link
-            to="/profile"
-            className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
-          >
-            Profile
-          </Link>
-          {isLoggedIn && (
+      {isLoggedIn ? (
+        <div
+          className={`${
+            isMobileMenuOpen ? "fixed z-50" : "hidden"
+          } top-0 left-0 w-full h-full flex items-center justify-end bg-black bg-opacity-30`}
+          onClick={handleMobileMenuToggle}
+        >
+          <div className="md:hidden bg-white w-1/2 h-full flex flex-col justify-start items-end pt-12">
             <button
-              onClick={handleConfirmModalToggle}
+              onClick={handleMobileMenuToggle}
+              className="absolute top-4 right-4 text-main hover:text-gray-600 focus:outline-none"
+            >
+              <svg
+                className="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+              <span className="sr-only">Close menu</span>
+            </button>
+            <div className="px-4 py-2 text-sm font-medium text-main w-full text-right">
+              <div className="flex gap-4 items-center">
+                {profileImage}
+                <p className="text-sm font-medium text-primary">
+                  {data && data.name}
+                </p>
+              </div>
+            </div>
+            <Link
+              to="/search-recipe"
               className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
             >
-              Logout
-            </button>
-          )}
+              Search recipe
+            </Link>
+            <Link
+              to="/profile"
+              className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
+            >
+              Profile
+            </Link>
+            {isLoggedIn && (
+              <button
+                onClick={handleConfirmModalToggle}
+                className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
+              >
+                Logout
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div
+          className={`${
+            isMobileMenuOpen ? "fixed z-50" : "hidden"
+          } top-0 left-0 w-full h-full flex items-center justify-end bg-black bg-opacity-30`}
+          onClick={handleMobileMenuToggle}
+        >
+          <div className="md:hidden bg-white w-1/2 h-full flex flex-col justify-start items-end pt-12">
+            <button
+              onClick={handleMobileMenuToggle}
+              className="absolute top-4 right-4 text-main hover:text-gray-600 focus:outline-none"
+            >
+              <svg
+                className="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+              <span className="sr-only">Close menu</span>
+            </button>
+            <Link
+              to="/"
+              className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
+            >
+              Home
+            </Link>
+            <a
+              href="#about-us"
+              className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
+            >
+              About us
+            </a>
+            <a
+              href="#features"
+              className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
+            >
+              Features
+            </a>
+            <Link
+              to="/login"
+              className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
+            >
+              Log in
+            </Link>
+            {isLoggedIn && (
+              <button
+                onClick={handleConfirmModalToggle}
+                className="px-4 py-2 text-sm font-medium text-main hover:bg-primary/15 w-full text-left"
+              >
+                Logout
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Confirm Logout Modal */}
       <div

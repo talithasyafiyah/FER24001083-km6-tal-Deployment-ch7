@@ -438,7 +438,7 @@ function LandingPage() {
           </section>
 
           {/* About Us */}
-          <section className="mb-20 overflow-x-hidden overflow-y-hidden">
+          <section id="about-us" className="mb-20 overflow-x-hidden overflow-y-hidden">
             <div className="w-full h-[600px] md:h-[400px] relative">
               <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
 
@@ -484,7 +484,7 @@ function LandingPage() {
           </section>
 
           {/* Features */}
-          <section className="container mb-20">
+          <section id="features" className="container mb-20">
             {/* Title */}
             <div className="flex gap-4 mb-8">
               <div className="h-16 border-2 border-primary"></div>
