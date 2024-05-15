@@ -279,7 +279,11 @@ function LandingPage() {
           <section id="card" className="container my-20">
             <div className="flex flex-col md:flex-row gap-8 items-center">
               {random.map((e, i) => (
-                <div key={i} className="w-full md:w-1/2 relative">
+                <div
+                  key={i}
+                  className="w-full md:w-1/2 relative cursor-pointer transition-transform duration-250 hover:scale-[1.05] hover:shadow-lg"
+                  onClick={() => handleClickCard(e)}
+                >
                   <img
                     className="h-[300px] w-full object-cover rounded-lg"
                     src={e.strMealThumb}
