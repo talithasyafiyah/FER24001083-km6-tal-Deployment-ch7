@@ -438,7 +438,10 @@ function LandingPage() {
           </section>
 
           {/* About Us */}
-          <section id="about-us" className="mb-20 overflow-x-hidden overflow-y-hidden">
+          <section
+            id="about-us"
+            className="mb-20 overflow-x-hidden overflow-y-hidden"
+          >
             <div className="w-full h-[600px] md:h-[400px] relative">
               <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
 
@@ -470,9 +473,12 @@ function LandingPage() {
               {slider.length > 0 && (
                 <Slider {...settings2} className="relative z-0">
                   {slider.map((e, index) => (
-                    <div key={index} className="h-[400px] relative">
+                    <div
+                      key={index}
+                      className="h-[600px] md:h-[400px] relative"
+                    >
                       <img
-                        className="w-full h-[400px] object-cover"
+                        className="w-full h-[600px] md:h-[400px] object-cover"
                         src={e?.image}
                         alt={`Slide ${index}`}
                       />
